@@ -53,6 +53,10 @@ app.get('/api/warning', (req, res) => {
     rollbar.warning('warning message here')
 })
 
+app.get('/api/critical', (req, res) => {
+    rollbar.critical('critical message here')
+})
+
 
 const port = process.env.PORT || 4545
 
