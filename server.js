@@ -27,8 +27,8 @@ app.get('/api/student', (req, res) => {
 
     })
     if (firstName === '') {
-        rollbar.critical('This is a critical error')
-        res.status(400).send('must fix student name CRITICAL')
+        rollbar.log('successful')
+        res.status(200).send('student')
     } else {
         rollbar.warning('This is a warning error')
         res.status(400).send('must fix student name WARNING')
@@ -36,6 +36,17 @@ app.get('/api/student', (req, res) => {
     
 })
 
+app.get('api/studentname', (req, res) => {
+    let {firstName} = req.body
+    studentName === firstName
+    
+    if (firstName === studentName) {
+        rollbar.log(200).send('student')
+    } else {
+        rollbar.critical('This is a critical error')
+        res.status(400).send('must fix student name CRITICAL')
+    }      
+})
 
 
 
