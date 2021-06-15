@@ -21,34 +21,37 @@ app.get('/api/endpointtest', (req, res) => {
     badFunction(req)
 })
 
-app.get('/api/student', (req, res) => {
-    let {firstName} = req.body
-    let index = student.findIndex((firstName) => {
+// app.get('/api/student', (req, res) => {
+//     let index = student.findIndex((firstName) => {
 
-    })
-    if (firstName === '') {
-        rollbar.log('successful')
-        res.status(200).send('student')
-    } else {
-        rollbar.warning('This is a warning error')
-        res.status(400).send('must fix student name WARNING')
-    }
+//     })
+//     if (firstName === '') {
+//         rollbar.log('successful')
+//         res.status(200).send('student')
+//     } else {
+//         rollbar.warning('This is a warning error')
+//         res.status(400).send('must fix student name WARNING')
+//     }
     
-})
+// })
 
-app.get('api/studentname', (req, res) => {
-    let {firstName} = req.body
-    studentName === firstName
+// app.get('api/studentname', (req, res) => {
     
-    if (firstName === studentName) {
-        rollbar.log(200).send('student')
-    } else {
-        rollbar.critical('This is a critical error')
-        res.status(400).send('must fix student name CRITICAL')
-    }      
+//     if (firstName === studentName) {
+//         rollbar.log(200).send('student')
+//     } else {
+//         rollbar.critical('This is a critical error')
+//         res.status(400).send('must fix student name CRITICAL')
+//     }      
+// })
+
+const warningFun = () => {
+    return rollbar.warning('warning message')
+}
+
+app.get('api/warning', (req, res) => {
+    warningFun()
 })
-
-
 
 
 const port = process.env.PORT || 4545
