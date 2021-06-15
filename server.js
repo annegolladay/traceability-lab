@@ -50,7 +50,7 @@ const warningFun = () => {
 }
 
 app.get('api/warning', (req, res) => {
-    warningFun()
+    warningFun(req)
 })
 
 
