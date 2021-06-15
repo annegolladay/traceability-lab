@@ -49,7 +49,7 @@ app.get('/api/endpointtest', (req, res) => {
 //     return rollbar.warning('warning message')
 // }
 
-app.get('api/warning', (req, res) => {
+app.get('/api/warning', (req, res) => {
     rollbar.warning('warning message here')
 })
 
