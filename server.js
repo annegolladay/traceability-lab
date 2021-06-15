@@ -45,12 +45,12 @@ app.get('/api/endpointtest', (req, res) => {
 //     }      
 // })
 
-const warningFun = () => {
-    return rollbar.warning('warning message')
-}
+// const warningFun = () => {
+//     return rollbar.warning('warning message')
+// }
 
 app.get('api/warning', (req, res) => {
-    warningFun(req)
+    rollbar.warning('warning message here')
 })
 
 
