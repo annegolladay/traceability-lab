@@ -10,7 +10,7 @@ let rollbar = new Rollbar({
 
 const app = express()
 app.use(express.json())
-let students = []
+let student = ['annie', 'stephen']
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))
@@ -21,17 +21,20 @@ app.get('/api/endpointtest', (req, res) => {
     badFunction(req)
 })
 
-app.get('/api/students', (req, res) => {
-    badFunction(req)
-    rollbar.critical('This is a critical error')
-    res.status(400).send('must fix student name')
-})
+app.get('/api/student', (req, res) => {
+    let {firstName} = req.body
+    let index = student.findIndex((firstName) => {
 
-// app.get('/api/students', (req, res) => {
-//     badFunction(req)
-//     rollbar.warning('This is a warning error')
-//     res.status(400).send('must fix student name')
-// })
+    })
+    if (firstName === '') {
+        rollbar.critical('This is a critical error')
+        res.status(400).send('must fix student name')
+    } else {
+        rollbar.warning('This is a warning error')
+        res.status(400).send('must fix student name')
+    }
+    
+})
 
 
 
