@@ -10,6 +10,7 @@ let rollbar = new Rollbar({
 
 const app = express()
 app.use(express.json())
+let students = []
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))
@@ -19,6 +20,19 @@ app.get('/', (req, res) => {
 app.get('/api/endpointtest', (req, res) => {
     badFunction(req)
 })
+
+app.get('/api/students', (req, res) => {
+    badFunction(req)
+    rollbar.critical('This is a critical error')
+    res.status(400).send('must fix student name')
+})
+
+// app.get('/api/students', (req, res) => {
+//     badFunction(req)
+//     rollbar.warning('This is a warning error')
+//     res.status(400).send('must fix student name')
+// })
+
 
 
 
