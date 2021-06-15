@@ -28,10 +28,10 @@ app.get('/api/student', (req, res) => {
     })
     if (firstName === '') {
         rollbar.critical('This is a critical error')
-        res.status(400).send('must fix student name')
+        res.status(400).send('must fix student name CRITICAL')
     } else {
         rollbar.warning('This is a warning error')
-        res.status(400).send('must fix student name')
+        res.status(400).send('must fix student name WARNING')
     }
     
 })
