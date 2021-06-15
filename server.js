@@ -9,8 +9,11 @@ let rollbar = new Rollbar({
 
 
 const app = express()
+
 app.use(express.json())
-let student = ['annie', 'stephen']
+app.use('/style', express.static('./public/styles.css'))
+
+
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))
@@ -21,40 +24,36 @@ app.get('/api/endpointtest', (req, res) => {
     badFunction(req)
 })
 
-// app.get('/api/student', (req, res) => {
-//     let index = student.findIndex((firstName) => {
-
-//     })
-//     if (firstName === '') {
-//         rollbar.log('successful')
-//         res.status(200).send('student')
-//     } else {
-//         rollbar.warning('This is a warning error')
-//         res.status(400).send('must fix student name WARNING')
-//     }
-    
-// })
-
-// app.get('api/studentname', (req, res) => {
-    
-//     if (firstName === studentName) {
-//         rollbar.log(200).send('student')
-//     } else {
-//         rollbar.critical('This is a critical error')
-//         res.status(400).send('must fix student name CRITICAL')
-//     }      
-// })
-
-// const warningFun = () => {
-//     return rollbar.warning('warning message')
-// }
-
 app.get('/api/warning', (req, res) => {
     rollbar.warning('warning message here')
 })
 
 app.get('/api/critical', (req, res) => {
     rollbar.critical('critical message here')
+})
+
+//Added Feature - what we did in class(extra practice)
+
+let students = []
+
+app.post('/api/student', (req, res) => {
+    let {name} = req.body
+
+    let index = students.findIndex((studentName) => {
+        studentName === name
+    })
+
+    if (index === -1 && name !== '') {
+        students.push(name)
+        rollbar.log('student added successfully', {author: 'annie', type: 'manual'})
+        res.status(200).send(students)
+    } else if (name === '') {
+        rollbar.error('no name given')
+        res.status(400).send('must provide name')
+    } else {
+        rollbar.error('student already exists')
+        res.status(400).send('that student already exists')
+    }
 })
 
 
