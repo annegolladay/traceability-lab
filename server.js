@@ -16,6 +16,12 @@ app.get('/', (req, res) => {
     rollbar.info('html file served successfully')
 })
 
+app.get('/api/endpointtest', (req, res) => {
+    badFunction(req)
+})
+
+
+
 
 const port = process.env.PORT || 4545
 
